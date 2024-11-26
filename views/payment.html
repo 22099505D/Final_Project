@@ -1,0 +1,138 @@
+<!-- ZHANG Yangxiao 22099505D -->
+<!-- WU Zekun 22097852D -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Payment</title>
+    <link rel="stylesheet" href="/css/styles2.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Cinema Ticket Sales System</h1>
+      <nav>
+        <a href="/Home">Home</a>
+            <a href="/index">Event Dashboard</a>
+            <a href="/booking">Ticket Booking</a>
+            <a href="/payment">Payment</a>
+            <a href="/seat-management">Seat Management (Admin)</a>
+            <a href="/event-management">Event Management (Admin)</a>
+      </nav>
+    </header>
+
+    <div class="container">
+      <div class="payment">
+          <h2>Payment</h2>
+          <p><strong>Booking Details:</strong></p>
+          <p>Selected Seat(s): <span id="selected-seat"></span></p>
+          <p>Total Cost: <span id="total-cost"></span></p>
+          <p>Movie Name: <span id="movie-name"></span></p>
+
+          <h3>Enter Payment Details</h3>
+          <label for="card-number">Card Number</label>
+          <input type="text" id="card-number" placeholder="Card Number" required />
+          <label for="expiration-date">Expiration Date</label>
+          <input type="text" id="expiration-date" placeholder="MM/YY" required />
+          <label for="cvv">CVV</label>
+          <input type="text" id="cvv" placeholder="CVV" required />
+          <button class="btn" id="pay-button">Pay Now</button>
+
+          <p id="payment-status"></p>
+          <div id="ticket" style="display:none;">
+              <h3>Electronic Ticket</h3>
+              <p>Your ticket has been successfully booked!</p>
+              <p>Seat(s): <span id="ticket-seat"></span></p>
+              <p>Total Cost: <span id="ticket-cost"></span></p>
+              <p>Movie Name: <span id="ticket-movie"></span></p>
+              <p>Payment Time: <span id="payment-time"></span></p>
+          </div>
+      </div>
+  </div>
+  
+  <script>
+      function getUrlParameters() {
+          const params = new URLSearchParams(window.location.search);
+          return {
+              seat: params.get('seat'),
+              cost: params.get('cost'),
+              movie: params.get('movie') // Get movie name from URL parameters
+          };
+      }
+
+      function setBookingDetails() {
+          const bookingDetails = getUrlParameters();
+          document.getElementById('selected-seat').innerText = bookingDetails.seat || 'N/A';
+          document.getElementById('total-cost').innerText = `$${bookingDetails.cost || '0.00'}`;
+          document.getElementById('movie-name').innerText = bookingDetails.movie || 'N/A'; // Set movie name
+      }
+
+      document.getElementById('pay-button').addEventListener('click', function() {
+          const cardNumber = document.getElementById('card-number').value;
+          const expirationDate = document.getElementById('expiration-date').value;
+          const cvv = document.getElementById('cvv').value;
+
+          if (!cardNumber || !expirationDate || !cvv) {
+              document.getElementById('payment-status').innerText = 'Please fill out all fields.';
+              return;
+          }
+          
+          
+          // Simulate payment processing
+          if (Math.random() > 0.5) { 
+              document.getElementById('payment-status').innerText = 'Payment Successful! Your tickets will be emailed to you.';
+              showTicket();
+          } else {
+              document.getElementById('payment-status').innerText = 'Payment Failed! Please try again.';
+          }
+      });
+
+      function showTicket() {
+    const selectedSeat = document.getElementById('selected-seat').innerText;
+    const totalCost = document.getElementById('total-cost').innerText.replace('$', '');
+    const movieName = document.getElementById('movie-name').innerText;
+    const paymentTime = new Date().toISOString();
+
+    // 更新界面显示
+    document.getElementById('ticket-seat').innerText = selectedSeat;
+    document.getElementById('ticket-cost').innerText = `$${totalCost}`;
+    document.getElementById('ticket-movie').innerText = movieName;
+    document.getElementById('payment-time').innerText = new Date().toLocaleString();
+    document.getElementById('ticket').style.display = 'block';
+
+    // 构建购买信息
+    const purchaseData = {
+        movieName,
+        seats: selectedSeat,
+        cost: parseFloat(totalCost),
+        purchaseDate: paymentTime
+    };
+
+    // 发送到后端
+    fetch('/api/save-purchase', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(purchaseData)
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (data.success) {
+            console.log('Purchase saved successfully!');
+        } else {
+            console.error('Failed to save purchase:', data.message);
+        }
+    })
+    .catch(error => console.error('Error saving purchase:', error));
+}
+
+
+      window.onload = setBookingDetails;
+  </script>
+  <footer class="bg-primary text-yellow text-center py-3 fixed-bottom">
+      <p>Contact us: info@cinematickets.com | Phone: (123) 456-7890</p>
+      <p>&copy; 2024 Cinema Ticket Sales System. All rights reserved.</p>
+  </footer>
+  </body>
+</html>

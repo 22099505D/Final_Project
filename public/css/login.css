@@ -1,0 +1,67 @@
+/* 登录页面背景 */
+/* ZHANG Yangxiao 22099505D */
+/* WU Zekun 22097852D */
+.login-body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background-image: url("/images/login.jpg"); /* 背景图片路径 */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* 登录容器 */
+.login-container {
+  width: 100%;
+  max-width: 400px;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.9); /* 半透明白色背景 */
+  border-radius: 8px;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+.login-container h2 {
+  font-weight: bold;
+  color: #007bff;
+}
+
+.login-container .form-group {
+  text-align: left;
+}
+
+.login-container .btn {
+  font-weight: bold;
+}
+
+.login-container a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.login-container a:hover {
+  text-decoration: underline;
+}
+
+/* 修改背景颜色和字体颜色 */
+.home-button {
+  background-color: #28a745; /* 绿色背景 */
+  color: white; /* 白色字体 */
+  padding: 10px 20px; /* 内边距让按钮更美观 */
+  text-decoration: none; /* 去掉下划线 */
+  border-radius: 5px; /* 圆角 */
+  font-size: 16px; /* 字体大小 */
+}
+
+/* 鼠标悬停时的效果 */
+.home-button:hover {
+  background-color: #218838; /* 更深的绿色 */
+  color: white; /* 悬停时字体保持白色 */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* 添加阴影效果 */
+}
+
+
+

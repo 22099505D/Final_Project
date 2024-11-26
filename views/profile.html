@@ -1,0 +1,76 @@
+<!-- ZHANG Yangxiao 22099505D -->
+<!-- WU Zekun 22097852D -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/profile.css"> <!-- 新的样式文件 -->
+    <script src="/js/profile.js"></script>
+    <script src="/js/navbar.js"></script>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg custom-navbar shadow-sm">
+        <a class="navbar-brand custom-brand" href="/">PolyU Cinema</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ml-auto" id="navbar-items">
+          </ul>
+          <li class="nav-item">
+            <a class="nav-link" href="/logout">Logout</a>
+            
+        </li>
+        </div>
+    </nav>
+    <div class="main-container">
+        <div class="profile-container">
+            <img id="profile-image" src="/uploads/default-avatar.png" alt="User Avatar">
+            <h2 id="user-name">Username</h2>
+            <div class="info">
+                <span>Email:</span> <span id="user-email"></span>
+            </div>
+            <div class="info">
+                <span>Gender:</span> <span id="user-gender"></span>
+            </div>
+            <div class="info">
+                <span>Birthdate:</span> <span id="user-birthdate"></span>
+            </div>
+            <button class="btn btn-primary edit-btn" onclick="window.location.href='/edit-profile'">Edit Profile</button>
+            
+            <div class="purchase-history">
+                <h3>Purchase History</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Movie Title</th>
+                            <th>Seats</th>
+                            <th>Price</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody id="purchase-list">
+                    </tbody>
+                </table>
+            </div>
+            
+        </div>
+    </div>
+</body>
+
+</html>

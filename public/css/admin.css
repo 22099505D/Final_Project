@@ -1,0 +1,13 @@
+/* ZHANG Yangxiao 22099505D */
+/* WU Zekun 22097852D */
+body {
+    background-color: #f8f9fa;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+table {
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}

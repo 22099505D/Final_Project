@@ -1,0 +1,54 @@
+<!-- ZHANG Yangxiao 22099505D -->
+<!-- WU Zekun 22097852D -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/login.css" />
+    
+    <script src="/js/navbar.js"></script>
+  </head>
+  <body class="login-body">
+    
+    <div class="login-container">
+      <h2 class="text-center mb-4">Login to PolyU Cinema</h2>
+      <form action="/login" method="POST">
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input
+            type="text"
+            class="form-control"
+            id="username"
+            name="username"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input
+            type="password"
+            class="form-control"
+            id="password"
+            name="password"
+            required
+          />
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Login</button>
+        <a href="/" class="btn btn-primary btn-block home-button">Back to Home</a>
+
+
+
+        <p class="text-center mt-3">
+          Don't have an account? <a href="/register">Register here</a>
+        </p>
+      </form>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,69 @@
+<!-- ZHANG Yangxiao 22099505D -->
+<!-- WU Zekun 22097852D -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Event Management</title>
+    <link rel="stylesheet" href="/css/styles2.css" />
+  </head>
+  <body>
+    <header>
+        <h1>Cinema Ticket Sales System</h1>
+        <nav>
+            <a href="/Home">Home</a>
+            <a href="/index">Event Dashboard</a>
+            <a href="/booking">Ticket Booking</a>
+            <a href="/payment">Payment</a>
+            <a href="/seat-management">Seat Management (Admin)</a>
+            <a href="/event-management">Event Management (Admin)</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="event-management">
+            <h2>Add New Event</h2>
+            <form id="eventForm">
+                <input type="text" id="title" placeholder="Movie Title" required>
+                <input type="date" id="date" required>
+                <input type="time" id="time" required>
+                <input type="text" id="venue" placeholder="Venue" required>
+                <textarea id="description" placeholder="Description" required></textarea>
+                <input type="number" id="tickets" placeholder="Tickets Available" required>
+                <input type="text" id="image" placeholder="Image URL" required>
+                <button type="submit">Add Event</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('eventForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const title = document.getElementById('title').value;
+            const date = document.getElementById('date').value;
+            const time = document.getElementById('time').value;
+            const venue = document.getElementById('venue').value;
+            const description = document.getElementById('description').value;
+            const tickets = document.getElementById('tickets').value;
+            const image = document.getElementById('image').value;
+
+            const newEvent = { title, date, time, venue, description, tickets: Number(tickets), image };
+
+            // Load existing events
+            let events = JSON.parse(localStorage.getItem('events')) || [];
+            events.push(newEvent);
+            localStorage.setItem('events', JSON.stringify(events));
+
+            alert('Event added successfully!');
+            document.getElementById('eventForm').reset();
+        });
+    </script>
+
+    <footer>
+        <p>Contact us: info@cinematickets.com | Phone: (123) 456-7890</p>
+        <p>&copy; 2024 Cinema Ticket Sales System. All rights reserved.</p>
+    </footer>
+</body>
+</html>

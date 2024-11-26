@@ -1,0 +1,72 @@
+<!-- ZHANG Yangxiao 22099505D -->
+<!-- WU Zekun 22097852D -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Registration</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/register.css">
+</head>
+<body class="register-body">
+    <div class="register-container">
+        <h2 class="text-center mb-4">Register</h2>
+        <form action="/register" method="POST" id="register-form" enctype="multipart/form-data">
+            <!-- User ID -->
+            <div class="form-group">
+                <label for="userID">User ID</label>
+                <input type="text" class="form-control" id="userID" name="userID" required placeholder="Enter your User ID">
+            </div>
+            <!-- Password -->
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" id="password" name="password" required placeholder="Enter your Password">
+                <small id="passwordHelp" class="form-text text-muted">Password must be at least 8 characters long and include a number.</small>
+            </div>
+            <!-- Nickname -->
+            <div class="form-group">
+                <label for="nickname">Nickname</label>
+                <input type="text" class="form-control" id="nickname" name="nickname" required placeholder="Enter your Nickname">
+            </div>
+            <!-- Email -->
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" id="email" name="email" required placeholder="Enter your Email">
+            </div>
+            <!-- Gender -->
+            <div class="form-group">
+                <label for="gender">Gender</label>
+                <select class="form-control" id="gender" name="gender" required>
+                    <option value="" disabled selected>Select your Gender</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+            <!-- Birthdate -->
+            <div class="form-group">
+                <label for="birthdate">Birthdate</label>
+                <input type="date" class="form-control" id="birthdate" name="birthdate" required>
+            </div>
+            <div class="form-group">
+              <label for="profileImage">Profile Image</label>
+              <input type="file" class="form-control-file" id="profileImage" name="profileImage" accept="image/*" required>
+              <small class="form-text text-muted">Please upload a JPG, PNG, or GIF file.</small>
+            </div>
+            <!-- Submit Button -->
+            <button type="submit" class="btn btn-primary btn-block">Register</button>
+        </form>
+        <!-- Success/Failure Notification -->
+        <div id="notification" class="mt-3"></div>
+    </div>
+    <script src="/js/register-validation.js"></script>
+    <script>
+      document.getElementById("register-form").addEventListener("submit", function () {
+    alert("Registration Successful! Redirecting to your profile...");
+    window.location.href = "/profile"; // 跳转到用户信息界面
+});
+  </script>
+  
+</body>
+</html>

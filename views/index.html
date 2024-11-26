@@ -1,0 +1,158 @@
+<!-- ZHANG Yangxiao 22099505D -->
+<!-- WU Zekun 22097852D -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Book tickets for your favorite movies easily.">
+    <meta name="keywords" content="Cinema, Movies, Ticket Sales, Booking">
+    <title>Event Dashboard</title>
+    <link rel="stylesheet" href="/css/styles2.css" />
+    <style>
+        /* Additional styles for the suggestions dropdown */
+        .suggestions {
+            border: 1px solid #ccc;
+            max-height: 150px;
+            overflow-y: auto;
+            position: absolute;
+            background: white;
+            z-index: 1000;
+        }
+        .suggestion-item {
+            padding: 10px;
+            cursor: pointer;
+        }
+        .suggestion-item:hover {
+            background-color: #f0f0f0;
+        }
+    </style>
+  </head>
+  <body>
+
+    <header>
+        <h1>Cinema Ticket Sales System</h1>
+        <nav>
+            <a href="/Home">Home</a>
+            <a href="/index">Event Dashboard</a>
+            <a href="/booking">Ticket Booking</a>
+            <a href="/payment">Payment</a>
+            <a href="/seat-management">Seat Management (Admin)</a>
+            <a href="/event-management">Event Management (Admin)</a>
+
+        </nav>
+    </header>
+
+    <main class="container">
+        <section class="event">
+            <h2>Event Dashboard</h2>
+            <input type="text" id="search" placeholder="Search events..." onkeyup="filterEvents()">
+            <div id="suggestions" class="suggestions"></div>
+            <div class="event-list" id="eventList"></div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Contact us: info@cinematickets.com | Phone: (123) 456-7890</p>
+        <p>&copy; 2024 Cinema Ticket Sales System. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const originalEvents = [
+            { title: "Star Wars", date: "2024-11-15", time: "7:00 PM", venue: "Main Hall", description: "Enjoy a classic movie with friends!", image: "images/star-wars.jpg" },
+            { title: "The Hobbit", date: "2024-11-16", time: "8:00 PM", venue: "Main Hall", description: "A thrilling adventure awaits!", image: "images/the-hobbit.jpg" },
+            { title: "Jokers", date: "2024-11-17", time: "6:00 PM", venue: "Main Hall", description: "Join us for a comedy night!", image: "images/jokers.jpg" },
+            { title: "Snow White", date: "2024-11-18", time: "7:30 PM", venue: "Main Hall", description: "A romantic evening awaits!", image: "images/snow-white.jpg" },
+            { title: "Alien", date: "2024-11-19", time: "9:00 PM", venue: "Main Hall", description: "Experience the thrill of action!", image: "images/alien.jpg" },
+            { title: "The Kingdom", date: "2024-11-20", time: "8:00 PM", venue: "Main Hall", description: "A night of suspense and thrills!", image: "images/the-kingdom.jpg" }
+        ];
+
+        function loadEvents() {
+            const eventList = document.getElementById('eventList');
+            eventList.innerHTML = ''; // Clear the current list
+
+            // Load events from localStorage or use original events if none
+            const storedEvents = JSON.parse(localStorage.getItem('events')) || [];
+            const events = [...originalEvents, ...storedEvents]; // Combine original and new events
+
+            events.forEach(event => {
+                const eventItem = document.createElement('div');
+                eventItem.className = 'event-item';
+                eventItem.innerHTML = `
+                    <img src="${event.image}" alt="${event.title}" class="event-image">
+                    <h3>${event.title}</h3>
+                    <p><strong>Date:</strong> ${event.date}</p>
+                    <p><strong>Time:</strong> ${event.time}</p>
+                    <p><strong>Venue:</strong> ${event.venue}</p>
+                    <p><strong>Description:</strong> ${event.description}</p>
+                    <p><strong>Tickets Available:</strong> ${event.tickets || '50'}</p>
+                    <a href="/booking?movie=${encodeURIComponent(event.title)}">Book Now</a>
+
+                `;
+                eventList.appendChild(eventItem);
+            });
+        }
+
+        function filterEvents() {
+            const input = document.getElementById('search').value.toLowerCase();
+            const suggestions = document.getElementById('suggestions');
+            suggestions.innerHTML = '';
+
+            // Load events from localStorage or use original events if none
+            const storedEvents = JSON.parse(localStorage.getItem('events')) || [];
+            const events = [...originalEvents, ...storedEvents];
+
+            const filteredEvents = events.filter(event => 
+                event.title.toLowerCase().includes(input) || 
+                event.venue.toLowerCase().includes(input) || 
+                event.description.toLowerCase().includes(input)
+            );
+
+            // Display suggestions
+            filteredEvents.forEach(event => {
+                const suggestionItem = document.createElement('div');
+                suggestionItem.className = 'suggestion-item';
+                suggestionItem.textContent = event.title;
+                suggestionItem.onclick = () => {
+                    document.getElementById('search').value = event.title;
+                    suggestions.innerHTML = '';
+                    displayEvents(event.title);
+                };
+                suggestions.appendChild(suggestionItem);
+            });
+
+            displayEvents(input);
+        }
+
+        function displayEvents(filter) {
+            const eventList = document.getElementById('eventList');
+            eventList.innerHTML = '';
+
+            // Load events from localStorage or use original events if none
+            const storedEvents = JSON.parse(localStorage.getItem('events')) || [];
+            const events = [...originalEvents, ...storedEvents];
+
+            const filteredEvents = events.filter(event => event.title.toLowerCase().includes(filter.toLowerCase()));
+            filteredEvents.forEach(event => {
+                const eventItem = document.createElement('div');
+                eventItem.className = 'event-item';
+                eventItem.innerHTML = `
+                    <img src="${event.image}" alt="${event.title}" class="event-image">
+                    <h3>${event.title}</h3>
+                    <p><strong>Date:</strong> ${event.date}</p>
+                    <p><strong>Time:</strong> ${event.time}</p>
+                    <p><strong>Venue:</strong> ${event.venue}</p>
+                    <p><strong>Description:</strong> ${event.description}</p>
+                    <p><strong>Tickets Available:</strong> ${event.tickets || '50'}</p>
+                    <a href="/booking?movie=${encodeURIComponent(event.title)}">Book Now</a>
+
+                `;
+                eventList.appendChild(eventItem);
+            });
+        }
+
+        // Load events initially
+        window.onload = loadEvents;
+    </script>
+</body>
+</html>

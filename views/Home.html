@@ -1,0 +1,136 @@
+<!-- ZHANG Yangxiao 22099505D -->
+<!-- WU Zekun 22097852D -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home Page</title>
+    <!-- 引入 Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="/css/styles.css" />
+    <!-- 引入动态脚本 -->
+    <script src="/js/navbar.js"></script>
+
+  </head>
+  <body>
+    <!-- 导航栏 -->
+    <nav class="navbar navbar-expand-lg custom-navbar shadow-sm">
+      <a class="navbar-brand custom-brand" href="/">PolyU Cinema</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto" id="navbar-items">
+          <!-- 动态内容将通过 JavaScript 插入 -->
+        </ul>
+      </div>
+    </nav>
+    <script src="/js/navbar.js"></script>
+    
+    <!-- Hero Section with Background Image and Text -->
+    <header class="hero-section">
+      <img src="/images/123.jpg" alt="Hero Image" class="img-fluid w-100" />
+      <div class="hero-text-overlay">
+        <h1 class="hero-text">Welcome to PolyU Cinema</h1>
+      </div>
+    </header>
+
+    <hr class="section-divider" />
+
+    <!-- Upcoming Events Section with Background Image -->
+    <section class="upcoming-events-section">
+      <div class="overlay">
+        <h2 class="text-white">Upcoming Movie</h2>
+        <div class="events-content">
+          <!-- 活动1 -->
+          <div class="card mb-4 shadow-sm">
+            <img src="images/star-wars.jpg" class="card-img-top" alt="Event 1" />
+            <div class="card-body">
+              <h5 class="card-title">Star Wars</h5>
+              <p class="card-text">
+                Date: 2024-11-15<br />Location: Main Hall
+              </p>
+              
+            </div>
+          </div>
+          <!-- 活动2 -->
+          <div class="card mb-4 shadow-sm">
+            <img src="/images/jokers.jpg" class="card-img-top" alt="Event 2" />
+            <div class="card-body">
+              <h5 class="card-title">Jokers</h5>
+              <p class="card-text">
+                Date: 2024-11-17<br />Location: Main Hall
+              </p>
+              
+            </div>
+          </div>
+          <!-- 活动3 -->
+          <div class="card mb-4 shadow-sm">
+            <img src="/images/alien.jpg" class="card-img-top" alt="Event 3" />
+            <div class="card-body">
+              <h5 class="card-title">Alien</h5>
+              <p class="card-text">
+                Date: 2024-11-19<br />Location: Main Hall
+              </p>
+              
+            </div>
+          </div>
+        </div>
+        <a href="/index" class="btn btn-light learn-more-btn">Learn More</a>
+      </div>
+    </section>
+
+    <!-- 关于我们 -->
+    <div class="container my-5">
+      <h2 class="text-center mb-4">About Us</h2>
+      <p class="text-center">
+        PolyU Cinema offers a seamless experience for browsing, booking, and
+        managing movie tickets. Join us to discover the latest movies in town.
+      </p>
+    </div>
+
+    <!-- 页脚 -->
+    <footer class="bg-dark text-center text-lg-start text-white">
+      <div class="container p-4">
+        <p>&copy; 2024 PolyU Cinema. All rights reserved.</p>
+        <div>
+          <a href="#"
+            ><img
+              src="/images/facebook-icon.png"
+              alt="Facebook"
+              style="width: 24px; margin: 0 10px"
+          /></a>
+          <a href="#"
+            ><img
+              src="/images/twitter-icon.png"
+              alt="Twitter"
+              style="width: 24px; margin: 0 10px"
+          /></a>
+          <a href="#"
+            ><img
+              src="/images/instagram-icon.png"
+              alt="Instagram"
+              style="width: 24px; margin: 0 10px"
+          /></a>
+        </div>
+      </div>
+    </footer>
+
+    <!-- 引入脚本 -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

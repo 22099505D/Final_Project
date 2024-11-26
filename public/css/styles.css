@@ -1,0 +1,201 @@
+/* ZHANG Yangxiao 22099505D */
+/* WU Zekun 22097852D */
+
+/* 导航栏基础样式 */
+.custom-navbar {
+  background-color: #343a40; /* 深色背景 */
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* 增加阴影效果 */
+}
+
+.custom-brand {
+  font-weight: bold;
+  color: #007bff !important; /* 标题为蓝色 */
+  font-family: "Arial", sans-serif;
+}
+
+.custom-nav-link {
+  color: #ffffff !important;
+  padding: 5px 10px;
+  transition: background-color 0.3s ease;
+  border-radius: 5px;
+}
+
+/* 当前页面链接样式 */
+.navbar-nav .nav-item .active.custom-nav-link {
+  background-color: #007bff !important; /* 当前页面蓝色背景 */
+  color: #ffffff !important;
+}
+
+/* 悬停效果 */
+.custom-nav-link:hover {
+  background-color: #5a5a5a !important;
+  color: #ffffff !important;
+  text-decoration: none;
+}
+
+/* User链接样式 */
+.user-link {
+  border: 2px solid #ffffff; /* 明显的白色边框 */
+  border-radius: 5px;
+  padding: 5px 10px;
+  margin-left: 15px;
+  transition: background-color 0.3s ease;
+}
+
+/* User链接悬停效果 */
+.user-link:hover {
+  background-color: #5a5a5a;
+}
+
+/* 其他基本样式 */
+body {
+  background-color: #f8f9fa;
+}
+
+h1,
+h2 {
+  color: #007bff;
+  font-family: "Arial", sans-serif;
+  margin-bottom: 20px;
+}
+
+/* 活动卡片样式 */
+.card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* 页脚样式 */
+footer {
+  background-color: #343a40;
+  color: #ffffff;
+  padding: 20px 0;
+}
+
+footer p {
+  margin: 0;
+}
+
+footer img {
+  width: 24px;
+  margin: 0 10px;
+}
+
+/* Hero Section 样式 */
+.hero-section {
+  height: 400px; /* 可以根据需要调整高度 */
+  overflow: hidden;
+}
+
+.hero-section img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* 确保图片覆盖整个区域 */
+}
+
+/* Upcoming Events Section 样式 */
+.upcoming-events-section {
+  position: relative;
+  height: 500px; /* 可根据需求调整高度 */
+  background-image: url("/images/upcoming-events-bg.jpg"); /* 背景图片 */
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+/* 半透明覆盖层 */
+.upcoming-events-section .overlay {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6); /* 半透明黑色覆盖层 */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.upcoming-events-section h2 {
+  font-size: 2.5rem;
+  color: #ffffff;
+  margin-bottom: 20px;
+}
+
+/* 活动卡片样式 */
+.events-content {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
+
+.events-content .card {
+  width: 250px;
+  background-color: #ffffff;
+  border-radius: 5px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.events-content .card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Learn More 按钮样式 */
+.learn-more-btn {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+/* 分界线样式 */
+.section-divider {
+  width: 80%;
+  margin: 10px auto; /* 缩小上下间隔 */
+  border: 0;
+  border-top: 2px solid #ddd; /* 设置线条颜色和粗细 */
+  opacity: 0.6; /* 半透明效果 */
+}
+
+/* Hero Section 样式 */
+.hero-section {
+  position: relative;
+  height: 400px; /* 可根据需要调整高度 */
+  overflow: hidden;
+}
+
+.hero-section img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* 确保图片覆盖整个区域 */
+}
+
+/* 文字覆盖层 */
+.hero-text-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* 将文字居中 */
+  color: #ffffff;
+  text-align: center;
+}
+
+.hero-text {
+  font-size: 3rem;
+  font-weight: bold;
+  color: #ffffff;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7); /* 添加阴影，让文字在图片上更清晰 */
+}

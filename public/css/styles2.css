@@ -1,0 +1,90 @@
+/* ZHANG Yangxiao 22099505D */
+/* WU Zekun 22097852D */
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Ensures body takes at least full height of viewport */
+}
+
+.container {
+    flex: 1; /* Fills available space */
+}
+
+header {
+    background: #007BFF; /* Header background color */
+    color: white;
+    padding: 10px;
+    text-align: center;
+}
+
+nav a {
+    margin: 0 15px;
+    color: white;
+    text-decoration: none;
+}
+
+.event-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Space between movie items */
+    padding: 20px; /* Padding for the event list */
+}
+
+.event-item {
+    border: 2px solid #007BFF; /* Blue border */
+    border-radius: 8px; /* Rounded corners */
+    padding: 15px; /* Space inside the border */
+    background-color: #f9f9f9; /* Light background for contrast */
+    transition: box-shadow 0.3s ease; /* Smooth shadow effect on hover */
+}
+
+.event-item:hover {
+    box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3); /* Shadow effect on hover */
+}
+
+footer {
+    background: blue; /* Blue background */
+    color: white; /* White text */
+    text-align: center;
+    padding: 10px 0;
+    width: 100%;
+    position: fixed;
+    bottom: 0; /* Keeps footer at the bottom */
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 15px;
+    background-color: #007BFF; /* Button color */
+    color: white; /* Button text color */
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.btn:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+}
+.seat, .occupied, .bay, .occupied-bay {
+    cursor: pointer;
+}
+.available {
+    fill: blue;
+}
+.occupied {
+    fill: red;
+}
+.bay {
+    fill: green;
+}
+.occupied-bay {
+    fill: orange;
+}
+.price-tag {
+    font-size: 12px;
+    fill: white;
+    text-anchor: middle;
+}
+svg {
+    margin: 20px auto;
+    display: block;
+}

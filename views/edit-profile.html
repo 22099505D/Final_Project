@@ -1,0 +1,72 @@
+<!-- ZHANG Yangxiao 22099505D -->
+<!-- WU Zekun 22097852D -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Profile</title>
+    <!-- 引入 Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/edit-profile.css">
+    <script src="/js/navbar.js"></script>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg custom-navbar shadow-sm">
+    <a class="navbar-brand custom-brand" href="/">PolyU Cinema</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarNav"
+      aria-controls="navbarNav"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto" id="navbar-items">
+        <!-- 动态内容将通过 JavaScript 插入 -->
+      </ul>
+    </div>
+  </nav>
+    <div class="edit-profile-container">
+      <form action="/update-profile" method="POST" enctype="multipart/form-data" id="edit-profile-form">
+            <h2>Edit Your Profile</h2>
+            <input type="hidden" name="id" value="{{ user.id }}">
+
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="gender">Gender:</label>
+                <select id="gender" name="gender" class="form-control" required>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="birthdate">Birthdate:</label>
+                <input type="date" id="birthdate" name="birthdate" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="profileImage">Profile Image:</label>
+                <input type="file" id="profileImage" name="profileImage" class="form-control" accept="image/*">
+            </div>
+            <button type="button" id="save-btn" class="btn btn-primary">Save Changes</button>
+        </form>
+    </div>
+    <script src="/js/edit-profile.js"></script>
+</body>
+</html>

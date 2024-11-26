@@ -1,0 +1,170 @@
+<!-- ZHANG Yangxiao 22099505D -->
+<!-- WU Zekun 22097852D -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ticket Booking</title>
+    <link rel="stylesheet" href="/css/styles2.css" />
+    <style>
+      body {
+          font-family: Arial, sans-serif;
+          margin: 0;
+          padding: 20px;
+          background-color: #f4f4f4;
+      }
+     
+      .container {
+          margin-top: 20px;
+      }
+      .seat {
+          cursor: pointer;
+          transition: fill 0.3s;
+      }
+      .economy {
+          fill: lightgreen; 
+      }
+      .first-class {
+          fill: gold; 
+      }
+      .occupied {
+          fill: red; 
+      }
+      .selected {
+          fill: yellow;
+      }
+      .btn {
+          margin: 20px 0;
+          padding: 10px 15px;
+          background-color: #28a745;
+          color: white;
+          border: none;
+          cursor: pointer;
+      }
+      .btn:hover {
+          background-color: #218838;
+      }
+      footer {
+          background-color: #333;
+          color: #fff;
+          text-align: center;
+          padding: 10px 0;
+          position: relative;
+          bottom: 0;
+          width: 100%;
+      }
+  </style>
+  </head>
+  <body>
+    <header>
+      <h1>Cinema Ticket Sales System</h1>
+      <nav>
+        <a href="/Home">Home</a>
+            <a href="/index">Event Dashboard</a>
+            <a href="/booking">Ticket Booking</a>
+            <a href="/payment">Payment</a>
+            <a href="/seat-management">Seat Management (Admin)</a>
+            <a href="/event-management">Event Management (Admin)</a>
+      </nav>
+    </header>
+
+    <div class="container">
+      <h2>Ticket Booking for <span id="movie-name"></span></h2>
+      <p>Click on seats to select/deselect them.</p>
+      
+      <svg width="400" height="300">
+          <rect x="50" y="10" width="240" height="30" fill="green"/>
+          <text x="160" y="30" fill="white" font-size="16" text-anchor="middle">Screen</text>
+          <g id="seat-map">
+              <!-- Fixed positions for Economy and First-Class seats -->
+              <g>
+                  <rect x="50" y="50" width="30" height="30" class="seat economy available" data-seat="1"/>
+                  <rect x="90" y="50" width="30" height="30" class="seat first-class available" data-seat="2"/>
+                  <rect x="130" y="50" width="30" height="30" class="seat economy available" data-seat="3"/>
+                  <rect x="170" y="50" width="30" height="30" class="seat first-class available" data-seat="4"/>
+                  <rect x="210" y="50" width="30" height="30" class="seat economy available" data-seat="5"/>
+                  <rect x="250" y="50" width="30" height="30" class="seat first-class available" data-seat="6"/>
+              </g>
+              <g>
+                  <rect x="50" y="90" width="30" height="30" class="seat occupied" data-seat="7"/>
+                  <rect x="90" y="90" width="30" height="30" class="seat economy available" data-seat="8"/>
+                  <rect x="130" y="90" width="30" height="30" class="seat first-class available" data-seat="9"/>
+                  <rect x="170" y="90" width="30" height="30" class="seat economy available" data-seat="10"/>
+                  <rect x="210" y="90" width="30" height="30" class="seat occupied" data-seat="11"/>
+                  <rect x="250" y="90" width="30" height="30" class="seat first-class available" data-seat="12"/>
+              </g>
+              <g>
+                  <rect x="50" y="130" width="30" height="30" class="seat economy available" data-seat="13"/>
+                  <rect x="90" y="130" width="30" height="30" class="seat occupied" data-seat="14"/>
+                  <rect x="130" y="130" width="30" height="30" class="seat first-class available" data-seat="15"/>
+                  <rect x="170" y="130" width="30" height="30" class="seat economy available" data-seat="16"/>
+                  <rect x="210" y="130" width="30" height="30" class="seat economy available" data-seat="17"/>
+                  <rect x="250" y="130" width="30" height="30" class="seat occupied" data-seat="18"/>
+              </g>
+              <g>
+                  <rect x="50" y="170" width="30" height="30" class="seat economy available" data-seat="19"/>
+                  <rect x="90" y="170" width="30" height="30" class="seat economy available" data-seat="20"/>
+                  <rect x="130" y="170" width="30" height="30" class="seat first-class available" data-seat="21"/>
+                  <rect x="170" y="170" width="30" height="30" class="seat economy available" data-seat="22"/>
+                  <rect x="210" y="170" width="30" height="30" class="seat economy available" data-seat="23"/>
+                  <rect x="250" y="170" width="30" height="30" class="seat first-class available" data-seat="24"/>
+              </g>
+              <g>
+                  <rect x="50" y="210" width="30" height="30" class="seat economy available" data-seat="25"/>
+                  <rect x="90" y="210" width="30" height="30" class="seat first-class available" data-seat="26"/>
+                  <rect x="130" y="210" width="30" height="30" class="seat economy available" data-seat="27"/>
+                  <rect x="170" y="210" width="30" height="30" class="seat economy available" data-seat="28"/>
+                  <rect x="210" y="210" width="30" height="30" class="seat first-class available" data-seat="29"/>
+                  <rect x="250" y="210" width="30" height="30" class="seat economy available" data-seat="30"/>
+              </g>
+          </g>
+      </svg>
+
+      <p>Total Cost: <span id="total-cost">$0.00</span></p>
+      <button class="btn" id="confirm-button">Confirm Booking</button>
+  </div>
+
+  <script>
+      // Get the movie name from the URL
+      const urlParams = new URLSearchParams(window.location.search);
+      const movieName = urlParams.get('movie');
+      document.getElementById('movie-name').innerText = movieName || "Unknown Movie";
+
+      let selectedSeats = [];
+      const seats = document.querySelectorAll('.seat');
+
+      seats.forEach(seat => {
+          seat.addEventListener('click', function() {
+              const seatNumber = this.getAttribute('data-seat');
+              if (this.classList.contains('available')) {
+                  this.classList.remove('available');
+                  this.classList.add('selected');
+                  selectedSeats.push(seatNumber);
+              } else if (this.classList.contains('selected')) {
+                  this.classList.remove('selected');
+                  this.classList.add('available');
+                  selectedSeats = selectedSeats.filter(seat => seat !== seatNumber);
+              }
+              // Immediate pricing calculation
+              document.getElementById('total-cost').innerText = `$${(selectedSeats.length * 12.00).toFixed(2)}`;
+          });
+      });
+
+      document.getElementById('confirm-button').addEventListener('click', function () {
+    if (selectedSeats.length > 0) {
+        const totalCost = (selectedSeats.length * 12.00).toFixed(2);
+        window.location.href = `/payment?seat=${selectedSeats.join(',')}&cost=${totalCost}&movie=${encodeURIComponent(movieName)}`;
+    } else {
+        alert('Please select at least one seat.');
+    }
+});
+
+  </script>
+
+  <footer>
+      <p>Contact us: info@cinematickets.com | Phone: (123) 456-7890</p>
+      <p>&copy; 2024 Cinema Ticket Sales System. All rights reserved.</p>
+  </footer>
+  </body>
+</html>

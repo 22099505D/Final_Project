@@ -1,0 +1,53 @@
+/* 设置背景图片 */
+/* ZHANG Yangxiao 22099505D */
+/* WU Zekun 22097852D */
+.register-body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background-image: url("/images/CL.jpg"); /* 确保路径正确 */
+  background-size: cover; /* 图片覆盖整个背景 */
+  background-position: center; /* 居中对齐图片 */
+  background-repeat: no-repeat; /* 防止图片重复 */
+}
+
+
+.register-container {
+  width: 100%;
+  max-width: 400px;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+  text-align: left;
+}
+
+
+.register-container h2 {
+  font-weight: bold;
+  color: #007bff;
+}
+
+.register-container .form-group {
+  text-align: left;
+}
+
+.register-container .btn {
+  font-weight: bold;
+}
+
+.register-container a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.register-container a:hover {
+  text-decoration: underline;
+}
+
+/* 文件上传字段样式 */
+.form-control-file {
+  margin-top: 10px;
+}
