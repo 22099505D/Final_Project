@@ -111,7 +111,20 @@ app.get("/login", (req, res) => {
 });
 
 app.post('/login', async (req, res) => {
-    const { username, password } = req.body;
+    const { username, password, keepLoggedIn } = req.body;
+    
+    // 登录成功后设置cookie
+    const token = 'your-jwt-token'; // 假设使用 JWT 生成的 token
+
+    if (keepLoggedIn) {
+        // 勾选了“保持登录”，设置长期有效的 cookie
+        res.cookie('userToken', token, { maxAge: 30 * 24 * 60 * 60 * 1000, httpOnly: true }); // 30天有效
+    } else {
+        // 没有勾选“保持登录”，设置会话 cookie（浏览器关闭后失效）
+        res.cookie('userToken', token, { httpOnly: true }); // 会话 cookie
+    }
+
+    
 
     try {
         // 查找用户
@@ -471,4 +484,9 @@ sequelize.sync({ alter: true })
             });
         });
     });
+    
+
+
+    const cookieParser = require('cookie-parser');
+app.use(cookieParser());
     
